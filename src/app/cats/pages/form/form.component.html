@@ -6,9 +6,12 @@
         <div class="col-10 col-md-8" style="margin: 3em auto;">
           <div class="w-100 d-flex flex-column align-items-center">
             <form class="w-100">
-              <input style="margin: 20px 0px;" required type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" [(ngModel)]="form.name" name="name">
-              <input style="margin: 20px 0px;" required type="text" class="form-control" placeholder="Raza" aria-label="Raza" [(ngModel)]="form.race" name="race">
-              <input style="margin: 20px 0px;" required type="number" class="form-control" placeholder="Edad" aria-label="Edad" [(ngModel)]="form.age" name="age">
+              <label>Nombre</label>
+              <input style="margin:5px 0px 20px 0px;" required type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" [(ngModel)]="form.name" name="name">
+              <label>Raza</label>
+              <input style="margin:5px 0px 20px 0px;" required type="text" class="form-control" placeholder="Raza" aria-label="Raza" [(ngModel)]="form.race" name="race">
+              <label>Edad</label>
+              <input style="margin:5px 0px 20px 0px;" required type="number" class="form-control" placeholder="Edad" aria-label="Edad" [(ngModel)]="form.age" name="age">
             </form>
             <img class="imgForm" [src]="img" alt="" *ngIf="edit != 1">
             <img class="imgForm" [src]="form.img" alt="" *ngIf="edit == 1">

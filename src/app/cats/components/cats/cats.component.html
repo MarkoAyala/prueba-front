@@ -4,8 +4,8 @@
       <div class="card">
         <img src={{cat.img}} class="card-img-top" (error)="imgDefault(i)" alt="imagen">
         <div class="card-body">
-          <h5 class="card-title text-end">{{cat.name}}</h5>
-          <h5 class="card-title text-end">{{cat.race}}</h5>
+          <h5 class="card-title text-end">{{cat.name | titlecase }}</h5>
+          <h5 class="card-title text-end">{{cat.race | titlecase }}</h5>
           <h5 class="card-title text-end">{{cat.age}} {{cat.age == 1? 'Año' : 'Años'}}</h5>
           <div class="d-flex justify-content-end">
             <button (click)="deleteCat(cat._id , i)" class="btn btn-danger mx-2">Eliminar</button>
