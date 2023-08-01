@@ -13,6 +13,7 @@ import { CatsService } from '../../cats.service';
 })
 export class FormComponent {
   public edit!:number;
+  public idCat!:string;
   public cats:ImageFavorite[] = [];
   public img:string = '../../../../assets/Images/default.jpg';
   public form:createCat = {
@@ -23,37 +24,58 @@ export class FormComponent {
   }
 
   constructor(private activatedRoute:ActivatedRoute , private imagesService : ImagenService , private catService : CatsService , private router:Router){}
-  ngOnInit() {
+   async ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.edit = params['edit'];
-      console.log(this.edit);
-
+      this.idCat = params['id'];
+      console.log(this.edit, this.idCat);
+    });
     this.imagesService.getFavorites().subscribe((data)=>{
       this.cats = data;
     })
-    });
+    if(this.idCat){
+      let info = await this.catService.getOne(this.idCat);
+      this.form = info;
+    }
   }
 
   elegirImagen(url:string){
     this.img = url;
+    this.form = {
+      ...this.form,
+      img:url
+    }
   }
 
   isFormNotEmpty(): boolean {
     const values = Object.values(this.form);
-    console.log(values.some(value => value !== '' && value !== 0))
-    return values.every(value => value !== '' && value !== 0 && value != '../../../../assets/Images/default.jpg');
+    console.log(values.every(value => value !== '' && value !== 0 && value != '../../../../assets/Images/default.jpg'))
+    return values.every(value => value !== ''  && value != '../../../../assets/Images/default.jpg');
   }
 
   guardar(){
-    this.form = {
-      ...this.form,
-      img:this.img
+    if(this.edit != 1){
+      this.form = {
+        ...this.form,
+        img:this.img
+      }
     }
     if(this.isFormNotEmpty()){
-      this.catService.create(this.form).finally(()=>{
-        alert('Creado con exito');
+      if(this.edit != 1){
+        this.catService.create(this.form).finally(()=>{
+          alert('Creado con exito');
+          this.router.navigate(['/cats']);
+        })
+      }else{
+        this.catService.updateOne(this.idCat , {
+          name:this.form.name,
+          age:this.form.age,
+          race:this.form.race,
+          img:this.form.img
+        })
+        alert('Editado con exito');
         this.router.navigate(['/cats']);
-      })
+      }
       console.log("entre",this.form);
     }else{
       alert('Rellene todos los campos');

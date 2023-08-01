@@ -8,6 +8,8 @@ export interface Cat{
 }
 
 export interface createCat{
+  _id?:string,
+  __v?:number,
   age:number,
   img:string,
   name:string,

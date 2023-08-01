@@ -10,7 +10,8 @@
               <input style="margin: 20px 0px;" required type="text" class="form-control" placeholder="Raza" aria-label="Raza" [(ngModel)]="form.race" name="race">
               <input style="margin: 20px 0px;" required type="number" class="form-control" placeholder="Edad" aria-label="Edad" [(ngModel)]="form.age" name="age">
             </form>
-            <img class="imgForm" [src]="img" alt="">
+            <img class="imgForm" [src]="img" alt="" *ngIf="edit != 1">
+            <img class="imgForm" [src]="form.img" alt="" *ngIf="edit == 1">
             <div class="accordion w-100 mt-3" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
