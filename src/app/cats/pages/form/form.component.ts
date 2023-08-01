@@ -28,7 +28,6 @@ export class FormComponent {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.edit = params['edit'];
       this.idCat = params['id'];
-      console.log(this.edit, this.idCat);
     });
     this.imagesService.getFavorites().subscribe((data)=>{
       this.cats = data;
@@ -49,7 +48,6 @@ export class FormComponent {
 
   isFormNotEmpty(): boolean {
     const values = Object.values(this.form);
-    console.log(values.every(value => value !== '' && value !== 0 && value != '../../../../assets/Images/default.jpg'))
     return values.every(value => value !== ''  && value != '../../../../assets/Images/default.jpg');
   }
 
@@ -76,7 +74,6 @@ export class FormComponent {
         alert('Editado con exito');
         this.router.navigate(['/cats']);
       }
-      console.log("entre",this.form);
     }else{
       alert('Rellene todos los campos');
     }
