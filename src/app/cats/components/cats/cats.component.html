@@ -1,0 +1,23 @@
+<h2 class="tuclase m-3">Gatos:</h2>
+<div class="cardsContainer" *ngIf="cats.length > 0">
+  <div class="cardsdiv" *ngFor="let cat of cats; let i = index">
+      <div class="card">
+        <img src={{cat.img}} class="card-img-top" (error)="imgDefault(i)" alt="imagen">
+        <div class="card-body">
+          <h5 class="card-title text-end">{{cat.name}}</h5>
+          <h5 class="card-title text-end">{{cat.race}}</h5>
+          <div class="d-flex justify-content-end">
+            <button (click)="deleteCat(cat._id , i)" class="btn btn-danger mx-2">Eliminar</button>
+            <button class="btn btn-primary">Editar</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="container " *ngIf="cats.length == 0">
+<div class="row d-flex justify-content-center cargando">
+  <div class="col-12 col-md-6 text-center tuclase">
+    {{texto}}
+  </div>
+</div>
+</div>

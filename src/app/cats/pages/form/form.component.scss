@@ -1,0 +1,19 @@
+.createContainer{
+  background-color: rgb(198, 218, 255);
+  border-radius: 20px;
+  margin: 3em 0px;
+  box-shadow: 3px 5px 20px black;
+}
+.imgForm{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.imgFavorite{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border:1px solid black;
+  margin: 5px 5px;
+}

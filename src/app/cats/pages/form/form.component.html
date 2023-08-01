@@ -1,0 +1,40 @@
+<div style="width: 100%; height: 100vh;">
+  <div class="row w-100 h-100 d-flex justify-content-center m-0">
+    <div class="col-11 col-md-8 createContainer p-0">
+      <h4 class="tuclase text-center">{{edit == 1? 'Edita un gato':'Crear un gato nuevo'}}</h4>
+      <div class="col-12">
+        <div class="col-10 col-md-8" style="margin: 3em auto;">
+          <div class="w-100 d-flex flex-column align-items-center">
+            <form class="w-100">
+              <input style="margin: 20px 0px;" required type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" [(ngModel)]="form.name" name="name">
+              <input style="margin: 20px 0px;" required type="text" class="form-control" placeholder="Raza" aria-label="Raza" [(ngModel)]="form.race" name="race">
+              <input style="margin: 20px 0px;" required type="number" class="form-control" placeholder="Edad" aria-label="Edad" [(ngModel)]="form.age" name="age">
+            </form>
+            <img class="imgForm" [src]="img" alt="">
+            <div class="accordion w-100 mt-3" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button w-100" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Elija una imagen
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body" *ngIf="cats && cats.length > 0">
+                    <div class="w-100 d-flex justify-content-center flex-wrap">
+                      <img class="imgFavorite" *ngFor="let cat of cats;let i = index" [src]="cat.image.url" (click)="elegirImagen(cat.image.url)" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="w-100 d-flex justify-content-end pb-4" style="margin-left: -30px;">
+          <a href="/cats" class="btn btn-danger mx-3">Cancelar</a>
+          <button class="btn btn-success" (click)="guardar()">{{edit == 1? 'Editar':'Crear'}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
